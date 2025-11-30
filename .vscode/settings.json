@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stack": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "xiosbase": "cpp"
     }
 }

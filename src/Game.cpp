@@ -1,4 +1,5 @@
 #include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Window/Event.hpp>
 
 #include "Game.hpp"
 // #include "MainMenu.hpp"
@@ -15,32 +16,26 @@ Game::~Game()
 
 void Game::Run()
 {
-    sf::CircleShape shape(100.f);
+    sf::CircleShape shape(20.f);
     shape.setFillColor(sf::Color::Green);
 
-    sf::Clock clock;
-    sf::Time timeSinceLastFrame = sf::Time::Zero;
+    sf::CircleShape shape2(50.f);
+    shape2.setFillColor(sf::Color::Red);
+    shape2.setPosition({40.f, 0.f});
 
     while (m_context->m_window->isOpen())
     {
-        timeSinceLastFrame += clock.restart();
-
-        while (timeSinceLastFrame > TIME_PER_FRAME)
+        while (const auto event = m_context->m_window->pollEvent())
         {
-            timeSinceLastFrame -= TIME_PER_FRAME;
-
-            // m_context->m_states->ProcessStateChange();
-
-            // if (!m_context->m_states->IsEmpty())
-            // {
-            //     m_context->m_states->GetCurrent()->ProcessInput();
-            //     m_context->m_states->GetCurrent()->Update(TIME_PER_FRAME);
-            //     m_context->m_states->GetCurrent()->Draw();
-            // }
-            // else
-            // {
-            //     m_context->m_window->close();
-            // }
+            if (event->is<sf::Event::Closed>())
+            {
+                m_context->m_window->close();
+            }
         }
+
+        m_context->m_window->clear(sf::Color::Black);
+        m_context->m_window->draw(shape);
+        m_context->m_window->draw(shape2);
+        m_context->m_window->display();
     }
 }
