@@ -13,6 +13,8 @@ set(CXX_STANDARD_REQUIRED ON)
 
 # Source files
 file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+list(FILTER SOURCES EXCLUDE REGEX ".*GameCode\\.cpp$")
+
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Find SFML

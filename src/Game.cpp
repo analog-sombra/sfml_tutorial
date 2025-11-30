@@ -19,7 +19,7 @@ void Game::Run()
     sf::CircleShape shape(20.f);
     shape.setFillColor(sf::Color::Green);
 
-    sf::CircleShape shape2(50.f);
+    sf::CircleShape shape2(80.f);
     shape2.setFillColor(sf::Color::Red);
     shape2.setPosition({40.f, 0.f});
 
@@ -38,4 +38,9 @@ void Game::Run()
         m_context->m_window->draw(shape2);
         m_context->m_window->display();
     }
+}
+
+bool Game::IsRunning() const
+{
+    return m_context->m_window->isOpen();
 }
